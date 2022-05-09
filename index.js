@@ -51,6 +51,17 @@ async function run() {
             res.send(result)
         })
 
+
+        app.get('/myitem', async (req, res) => {
+            const email = req.query.email
+            const query = { email: email };
+            // console.log(email);
+            const cursor = bikeCollection.find(query);
+            const result = await cursor.toArray()
+            res.send(result)
+        })
+
+
         app.delete('/inventory/:id', async (req, res) => {
             const id = req.params.id
             const query = { _id: ObjectId(id) }
